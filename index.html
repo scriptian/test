@@ -1,5 +1,43 @@
 <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+            }
+
+            .container {
+                display: flex;
+                vertical-align: top;
+            }
+
+            .content-full {
+                flex: 1 1 0;
+                height: 100%;
+            }
+
+            #stage {
+                max-width: 100%;
+                border: 1px solid #eee;
+            }
+
+            @media only screen and (min-width: 1000px) {
+                #stage {
+                    max-width: 800px;
+                }   
+            }
+        </style>
+    </head>
     <body>
-        <h1>Test</h1>
+        <div class="container content-full" id="stage">
+        </div>
     </body>
+    <script>
+        $(function(){
+            $("#stage").load("scene/intro.html"); 
+        });
+    </script>
 </html>
