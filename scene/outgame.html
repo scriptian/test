@@ -1,84 +1,170 @@
 <div id="outgame">
     <style>
+        #outgame {
+            flex: 1 1 0;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(254 244 232);
+        }
+        #outgame-bottom2,
+        #outgame-bottom3,
         .toggle {
             display: none;
         }
         .toggle.active {
             display: flex;
         }
+        #episode-list {
+            flex: 1 1 0;
+            display: flex;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+            padding-left: 40px;
+            padding-right: 40px;
+            gap: 20px;
+        }
+        #episode-list .episode {
+            flex: 1 1 20%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 200px;
+            box-sizing: border-box;
+            padding: 20px;
+            font-size: 2rem;
+            background-color: #eee;
+            display: flex;
+            flex-direction: column;
+        }
+        #episode {
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/episode2.png');
+            background-position: center;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        #popup-outgame {
+            padding: 30px;
+            background: #eee;
+            border-radius: 4px;
+        }
+        #popup-outgame .btn {
+            padding: 10px;
+            width: 20%;
+        }
+        #popup-outgame .head {
+            display: flex;
+        }
+        #popup-outgame .head div {
+            flex: 1 1 0;
+        }
+        #popup-outgame  #btn-play {
+            width: 100%;
+        }
     </style>
     <div id="episode-list" class="toggle active">
-        <div class="eipsode">
-            <div class="icon">
-                icon
-            </div>
-            <div class="desc">
-                episode1
-            </div>
-            <div class="percent">
-                99
-            </div>
-        </div>
-        <div class="eipsode">
-            <div class="icon">
-                icon
-            </div>
-            <div class="desc">
-                episode2
-            </div>
-            <div class="percent">
-                99
-            </div>
-        </div>
-        <div class="eipsode">
-            <div class="icon">
-                icon
-            </div>
-            <div class="desc">
-                episode3
-            </div>
-            <div class="percent">
-                99
-            </div>
-        </div>
-        <div class="eipsode">
-            <div class="icon">
-                icon
-            </div>
-            <div class="desc">
-                episode4
-            </div>
-            <div class="percent">
-                99
-            </div>
-        </div>
     </div>
     <div id="episode" class="toggle">
-        episode
     </div>
     <div id="outgame-headup" class="headup">
-        <div id="bnt-profile" class="btn">
+        <div id="btn-profile" class="btn">
             profile
         </div>
-        <div id="bnt-heart" class="btn">
+        <div id="btn-heart" class="btn">
             heart
         </div>
-        <div id="bnt-gold" class="btn">
+        <div id="btn-gold" class="btn">
             gold
         </div>
-        <div id="bnt-start" class="btn">
-            start
+        <div id="btn-start" class="btn">
+            star
         </div>
     </div>
-    <div id="outgame-bottom" class="headdown">
-        <div id="bnt-replay" class="btn">
-            replay
-        </div>
-        <div id="bnt-gacha" class="btn">
-            gacha
-        </div>
-        <div id="bnt-back" class="btn btn-scene" target="lobby">
-            back
+    <div id="outgame-bottom1" class="headdown">
+        <div class="btn btn-scene" target="lobby">
+            내방으로
         </div>
     </div>
+    <div id="outgame-bottom2" class="headdown">
+        <div id="btn-collect" class="btn">
+            완성하기
+        </div>
+        <div id="btn-back" class="btn btn-scene" target="lobby">
+            목록으로
+        </div>
+    </div>
+    <div id="outgame-bottom3" class="headdown">
+        <div id="btn-replay" class="btn">
+            스토리<br/>
+            다시보기
+        </div>
+        <div id="btn-gacha" class="btn">
+            가차뽑기
+        </div>
+        <div id="btn-back" class="btn">
+            목록으로
+        </div>
+    </div>
+    <div class="popup" id="popup-outgame">
+        <div class="head">
+            <div>
+                테마 완성~!
+            </div>
+            <div class="btn">닫기</div>
+        </div>
+        <div class="body">
+            테마를 완성했습니다<br/>
+            가차로 뽑을 수 있어요~!
+        </div>
+        <div class="footer">
+            <div class="btn" id="btn-play">가차뽑기</div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            let episodeList = $('#episode-list');
+            for(let j=0; j < 20; j++) {
+                episodeList.append(
+                `<div class="episode">
+                    <div class="desc">
+                        episode${j+1}
+                    </div>
+                    <div class="percent">
+                        99%
+                    </div>
+                </div>`
+                );
+            }
+            let episodes = $('#episode-list .episode');
+            for(let i=0; i < episodes.length; i++) {
+                let episode = $(episodes[i]);
+                episode.css('background-image', `url('assets/icon${i+1}.png')`);
+            }
+            $('.episode').click(event => {
+                $('#episode-list').hide();
+                $('#outgame-bottom1').hide();
+                $('#episode').show();
+                $('#outgame-bottom2').show();
+            })
+        });
+        $('#outgame-bottom2 #btn-collect').click(event => {
+            $('#popup-outgame').show();
+            event.stopImmediatePropagation();
+            $('#outgame-bottom2').hide();
+            $('#outgame-bottom3').show();
+        })
+        $('#outgame-bottom2 #btn-back').click(event => {
+            $('#episode-list').show();
+            $('#outgame-bottom1').show();
+            $('#episode').hide();
+            $('#outgame-bottom2').hide();
+        })
+        $('#outgame-bottom3 #btn-back').click(event => {
+            console.log("test");
+            $('#episode-list').show();
+            $('#outgame-bottom1').show();
+            $('#episode').hide();
+            $('#outgame-bottom3').hide();
+        })
+    </script>
 </div>
