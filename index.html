@@ -7,9 +7,10 @@
                 padding: 0;
                 display: flex;
                 justify-content: center;
+                height: 100%;
             }
 
-            .container {
+            div {
                 display: flex;
                 vertical-align: top;
             }
@@ -24,20 +25,124 @@
                 border: 1px solid #eee;
             }
 
+            .headup {
+                width: 100%;
+                position: fixed;
+                padding-left: 40px;
+                padding-right: 40px;
+                z-index: 998;
+                height: 8%;
+                top: 40px;
+                box-sizing: border-box;
+                justify-content: center;
+            }
+
+            .headdown div,
+            .headup div {
+                margin-right: 10px;
+                font-size: 1.5rem;
+                flex: 1 1 0;
+            }
+            
+            .headdown div:last-child,
+            .headup div:last-child {
+                margin-right: 0px;
+            }
+
+            .headdown {
+                width: 100%;
+                position: fixed;
+                padding-left: 40px;
+                padding-right: 40px;
+                z-index: 997;
+                height: 8%;
+                bottom: 40px;
+                box-sizing: border-box;
+                justify-content: center;
+            }
+
+            .btn {
+                background-color: #ddd;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                width: 50px;
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+            }
+
+            .popup {
+                position: fixed;
+                width: 400px;
+                top: 40%;
+                left: 50%;
+                margin-left: -200px;
+                margin-right: -200px;
+                display: none;
+                flex-direction: column;
+                z-index: 999;
+                font-size: 2rem;   
+                box-sizing: border-box;         
+            }
+
+            .popup .head,
+            .popup .body {
+                margin-bottom: 40px;
+            }
+
+            .pop div:last-child {
+                margin-bottom: 0px;
+            }
+
             @media only screen and (min-width: 1000px) {
                 #stage {
                     max-width: 800px;
                 }   
+
+                .headup,
+                .headdown,
+                .popup {
+                    max-width: 800px;
+                }
             }
         </style>
     </head>
     <body>
-        <div class="container content-full" id="stage">
+        <div class="content-full" id="stage">
         </div>
     </body>
     <script>
         $(function(){
             $("#stage").load("scene/intro.html"); 
+            setTimeout(() => {
+                changeScene('lobby');
+            }, 4000);
         });
+
+        function changeScene(scene) {
+            let stage = $("#stage");
+            stage.empty();
+            stage.load(`scene/${scene}.html`, () => {
+                $('.btn').click(onBtnClick);
+            });
+        }
+
+        function onBtnClick(evt) {
+            let target = $(evt.currentTarget);
+            if(target.hasClass('btn-scene')) {
+                changeScene(target.attr('target'));
+            } else {
+                $('.popup').hide();
+            }
+        }
+
+        function findParentByClass(target, className) {
+            while(target.parent()) {
+                if(target.parent().hasClass(className)) {
+                    return target.parent();
+                }
+            }
+            return null;
+        }
     </script>
 </html>
