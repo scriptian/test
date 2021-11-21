@@ -6,7 +6,7 @@
             align-items: center;
             background-color: rgb(254 244 232);
         }
-        #outgame-bottom2,
+        #outgame-bottom1,
         #outgame-bottom3,
         .toggle {
             display: none;
@@ -65,9 +65,9 @@
             width: 100%;
         }
     </style>
-    <div id="episode-list" class="toggle active">
+    <div id="episode-list" class="toggle">
     </div>
-    <div id="episode" class="toggle">
+    <div id="episode" class="toggle active">
     </div>
     <div id="outgame-headup" class="headup">
         <div id="btn-profile" class="btn">
@@ -87,25 +87,33 @@
         <div class="btn btn-scene" target="lobby">
             내방으로
         </div>
+        <div id="btn-back" class="btn">
+            
+        </div>
+        <div id="btn-collect" class="btn">
+            
+        </div>
     </div>
     <div id="outgame-bottom2" class="headdown">
-        <div id="btn-collect" class="btn">
-            완성하기
+        <div class="btn btn-scene" target="lobby">
+            내방으로
         </div>
         <div id="btn-back" class="btn">
-            목록으로
+            목록보기
+        </div>
+        <div id="btn-collect" class="btn">
+            추억찾기
         </div>
     </div>
     <div id="outgame-bottom3" class="headdown">
-        <div id="btn-replay" class="btn">
-            스토리<br/>
-            다시보기
+        <div class="btn btn-scene" target="lobby">
+            내방으로
+        </div>
+        <div id="btn-back" class="btn">
+            목록보기
         </div>
         <div id="btn-gacha" class="btn">
             가차뽑기
-        </div>
-        <div id="btn-back" class="btn">
-            목록으로
         </div>
     </div>
     <div class="popup" id="popup-outgame">
@@ -149,6 +157,7 @@
                 $('#episode').show();
                 $('#outgame-bottom2').show();
             })
+            episodeList.hide();
         });
         $('#outgame-bottom2 #btn-collect').click(event => {
             $('#popup-outgame').show();
