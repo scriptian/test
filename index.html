@@ -76,18 +76,27 @@
                 width: 400px;
                 top: 40%;
                 left: 50%;
-                margin-left: -200px;
-                margin-right: -200px;
+                transform: translateX(-50%);
                 display: none;
                 flex-direction: column;
                 z-index: 999;
                 font-size: 2rem;   
-                box-sizing: border-box;         
+                box-sizing: border-box;      
+                background: #eee;
+                border-radius: 4px;   
+                padding: 20px;
             }
 
             .popup .head,
             .popup .body {
                 margin-bottom: 40px;
+                display: flex;
+            }
+
+            .popup .head div,
+            .popup .body div,
+            .popup .footer div {
+                flex: 1 1 0;
             }
 
             .pop div:last-child {
@@ -112,6 +121,8 @@
         </div>
     </body>
     <script>
+        let popupStack = [];
+
         $(function(){
             $("#stage").load("scene/intro.html"); 
             setTimeout(() => {
@@ -127,10 +138,18 @@
             });
         }
 
+        function showPopup(name) {
+            let popup = $(`#${name}`);
+            popup.show();
+            popupStack.push(popup);
+        }
+
         function onBtnClick(evt) {
             let target = $(evt.currentTarget);
             if(target.hasClass('btn-scene')) {
                 changeScene(target.attr('target'));
+            } else if(target.hasClass('btn-popup')) {
+                showPopup(target.attr('target'));
             } else {
                 $('.popup').hide();
             }

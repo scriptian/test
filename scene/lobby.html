@@ -7,6 +7,34 @@
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
+        #popup-episode {
+            width: 90%;
+            height: 90%;
+            top: 5%;
+        }
+        #popup-episode .body {
+            flex: 1 1 0;
+            display: flex;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+            gap: 20px;
+            height: 100%;
+            align-content: flex-start;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+        #popup-episode .body .episode {
+            flex: 1 1 20%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 200px;
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 2rem;
+            background-color: #eee;
+            display: flex;
+            flex-direction: column;
+        }
     </style>
     <div id="myroom">
     </div>
@@ -25,13 +53,75 @@
         </div>
     </div>
     <div id="lobby-bottom" class="headdown">
-        <div id="btn-ingame" class="btn btn-scene" target="ingame">
-            레벨235<br/>
+        <div id="btn-myroom" class="btn btn-popup" target="popup-episode">
+            에피소드목록
+        </div>
+        <div id="btn-store" class="btn">
+            상점
+        </div>
+        <div id="btn-ingame" class="btn btn-popup" target="popup-ingame">
+            레벨 235<br/>
             매우어려움
         </div>
-        <div id="btn-outgame" class="btn btn-scene" target="outgame">
-            에피소드1<br/>
-            80%
+        <div id="btn-social" class="btn btn-scene" target="myroom">
+            내방
+        </div>
+        <div id="btn-episode" class="btn">
+            찾기<br/>
+            2/10
         </div>
     </div>
+    <div class="popup" id="popup-ingame">
+        <div class="head">
+            <div>
+                레벨 235
+            </div>
+            <div class="btn">
+                X
+            </div>
+        </div>
+        <div class="body">
+            <div class="btn">아이템1</div>
+            <div class="btn">아이템2</div>
+            <div class="btn">아이템3</div>
+        </div>
+        <div class="footer">
+            <div class="btn btn-scene" target="ingame" id="btn-play">플레이</div>
+        </div>
+    </div>
+    <div class="popup" id="popup-episode">
+        <div class="head">
+            <div>
+                에피소드 목록
+            </div>
+            <div class="btn">
+                X
+            </div>
+        </div>
+        <div class="body">
+        </div>
+    </div>
+    <script>
+        $(function() {
+            let episodeList = $('#popup-episode > .body');
+            for(let j=0; j < 20; j++) {
+                episodeList.append(
+                `<div class="episode btn btn-scene" target="outgame">
+                    <div class="desc">
+                        episode${j+1}
+                    </div>
+                    <div class="percent">
+                        99%
+                    </div>
+                </div>`
+                );
+            }
+            let episodes = $('#episode-list .episode');
+            for(let i=0; i < episodes.length; i++) {
+                let episode = $(episodes[i]);
+                episode.css('background-image', `url('assets/icon${i+1}.png')`);
+            }
+            $('.btn').click(onBtnClick);
+        });
+    </script>
 </div>
