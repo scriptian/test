@@ -1,15 +1,19 @@
-<div class="container content-full">
+<div class="container content-full" id="episode">
     <style>
-        #myroom {
+        #episode {
+            background-color: rgb(254 244 232);
+        }
+        #episode-bg {
             width: 100%;
             height: 100%;
-            background-image: url('assets/bg2.png');
+            background-image: url('assets/episode2.png');
+            background-position: center;
+            background-size: 100%;
             background-repeat: no-repeat;
-            background-size: 100% 100%;
         }
     </style>
-    <div id="myroom"></div>
-    <div id="lobby-headup" class="headup">
+    <div id="episode-bg"></div>
+    <div id="outgame-headup" class="headup">
         <div id="btn-profile" class="btn">
             <span class="material-icons md-l">account_circle</span>            
         </div>
@@ -26,22 +30,21 @@
             <span class="material-icons md-l">search</span>
         </div>
     </div>
-    <div id="lobby-bottom" class="headdown">
-        <div id="btn-myroom" class="btn btn-scene" target="episode">
+    <div id="outgame-headdown" class="headdown">
+        <div id="btn-myroom" class="btn btn-scene" target="lobby">
+            <span class="material-icons md-l">home</span>
+        </div>
+        <div id="btn-myroom" class="btn btn-scene" target="outgame">
             <span class="material-icons md-l">chair</span>
         </div>
         <div id="btn-store" class="btn">
             <span class="material-icons md-l">shopping_bag</span>
         </div>
-        <div id="btn-ingame" class="btn btn-popup" target="popup-ingame">
-            <span class="material-icons md-l">play_arrow</span>
-        </div>
         <div id="btn-social" class="btn btn-popup" target="popup-episode">
             <span class="material-icons md-l">auto_stories</span>
         </div>
-        <div id="btn-episode" class="btn">
-            에피소드<br/>
-            2/10
+        <div id="btn-gacha" class="btn btn-popup" target="popup-itemlist">
+            <span class="material-icons md-l">egg_alt</span>
         </div>
     </div>
 </div>
