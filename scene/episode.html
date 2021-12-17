@@ -11,10 +11,17 @@
             background-size: 100%;
             background-repeat: no-repeat;
         }
+        #episode-headup2 {
+            top: 12%;
+            justify-content: space-between;
+        }
+        #episode-headup2 .btn {
+            flex: 0 0 120px;
+        }
     </style>
     <div id="episode-bg"></div>
-    <!-- <div id="outgame-headup" class="headup">
-        <div id="btn-profile" class="btn">
+    <div id="outgame-headup" class="headup">
+        <!-- <div id="btn-profile" class="btn">
             <span class="material-icons md-l">account_circle</span>            
         </div>
         <div id="btn-heart" class="btn">
@@ -28,8 +35,16 @@
         </div>
         <div id="btn-star" class="btn">            
             <span class="material-icons md-l">search</span>
+        </div> -->
+    </div>
+    <div id="episode-headup2" class="headup">
+        <div class="btn" id="btn-visibility-off">
+            <span class="material-icons md-l">visibility_off</span>
         </div>
-    </div> -->
+        <div class="btn" id="btn-replay">
+            <span class="material-icons md-l">replay</span>
+        </div>
+    </div> 
     <div id="outgame-headdown" class="headdown">
         <!-- <div id="btn-myroom" class="btn btn-scene" target="myroom">
             <span class="material-icons md-l">chair</span>
@@ -46,8 +61,8 @@
         <div id="btn-gacha" class="btn btn-scene" target="lobby">
             <span class="material-icons md-l">home</span>
         </div>
-        <div id="btn-gacha" class="btn">
-            <span class="material-icons md-l">replay</span>
+        <div id="btn-social" class="btn btn-popup" target="popup-episode">
+            <span class="material-icons md-l">auto_stories</span>
         </div>
         <div id="btn-gacha" class="btn btn-popup" target="popup-itemlist">
             <span class="material-icons md-l">egg_alt</span>
