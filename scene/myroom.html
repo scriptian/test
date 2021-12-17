@@ -11,6 +11,13 @@
             background-size: 100%;
             background-repeat: no-repeat;
         }
+        #myroom-headup2 {
+            top: 12%;
+            justify-content: space-between;
+        }
+        #myroom-headup2 .btn {
+            flex: 0 0 120px;
+        }
     </style>
     <div id="episode-bg"></div>
     <div id="outgame-headup" class="headup">
@@ -30,21 +37,29 @@
             <span class="material-icons md-l">search</span>
         </div>
     </div>
+    <div id="myroom-headup2" class="headup">
+        <div class="btn" id="btn-visibility-off">
+            <span class="material-icons md-l">visibility_off</span>
+        </div>
+        <div class="btn" id="btn-edit">
+            <span class="material-icons md-l">edit</span>
+        </div>
+    </div> 
     <div id="outgame-headdown" class="headdown">
         <!-- <div id="btn-store" class="btn">
             <span class="material-icons md-l">shopping_bag</span>
         </div> -->
-        <div id="btn-myroom" class="btn btn-scene" target="lobby">
+        <div id="btn-lobby" class="btn btn-scene" target="lobby">
             <span class="material-icons md-l">home</span>
         </div>
-        <div id="btn-gacha" class="btn btn-popup" target="popup-itemlist">
+        <div id="btn-play" class="btn">
             <span class="material-icons md-l">people</span>
         </div>
-        <div id="btn-gacha" class="btn btn-popup" target="popup-itemlist">
-            <span class="material-icons md-l">email</span>
+        <div id="btn-play" class="btn">
+            <span class="material-icons md-l">chat</span>
         </div>
         <div id="btn-gacha" class="btn btn-popup" target="popup-itemlist">
-            <span class="material-icons md-l">edit</span>
+            <span class="material-icons md-l">egg_alt</span>
         </div>
     </div>
 </div>
