@@ -1,71 +1,18 @@
-<div id="outgame">
+<div class="container content-full" id="episode">
     <style>
-        #outgame {
-            flex: 1 1 0;
-            justify-content: center;
-            align-items: center;
+        #episode {
             background-color: rgb(254 244 232);
         }
-        #outgame-bottom1,
-        #outgame-bottom3,
-        .toggle {
-            display: none;
-        }
-        .toggle.active {
-            display: flex;
-        }
-        #episode-list {
-            flex: 1 1 0;
-            display: flex;
-            flex-wrap: wrap;
-            box-sizing: border-box;
-            padding-left: 40px;
-            padding-right: 40px;
-            gap: 20px;
-            height: 100%;
-            align-content: flex-start;
-            padding-top: calc(20% + 20px);
-        }
-        #episode-list .episode {
-            flex: 1 1 20%;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            height: 200px;
-            box-sizing: border-box;
-            padding: 20px;
-            font-size: 2rem;
-            background-color: #eee;
-            display: flex;
-            flex-direction: column;
-        }
-        #episode {
+        #episode-bg {
             width: 100%;
             height: 100%;
-            background-image: url('assets/episode2.png');
+            background-image: url('assets/bg2.png');
             background-position: center;
             background-size: 100%;
             background-repeat: no-repeat;
         }
-        #popup-outgame {
-            padding: 30px;
-            background: #eee;
-            border-radius: 4px;
-        }
-        #popup-outgame .btn {
-            padding: 10px;
-            width: 20%;
-        }
-        #popup-outgame .head {
-            display: flex;
-        }
-        #popup-outgame .head div {
-            flex: 1 1 0;
-        }
-        #popup-outgame  #btn-play {
-            width: 100%;
-        }
     </style>
-    <div id="episode"></div>
+    <div id="episode-bg"></div>
     <div id="outgame-headup" class="headup">
         <div id="btn-profile" class="btn">
             <span class="material-icons md-l">account_circle</span>            
@@ -84,20 +31,20 @@
         </div>
     </div>
     <div id="outgame-headdown" class="headdown">
+        <!-- <div id="btn-store" class="btn">
+            <span class="material-icons md-l">shopping_bag</span>
+        </div> -->
         <div id="btn-myroom" class="btn btn-scene" target="lobby">
             <span class="material-icons md-l">home</span>
         </div>
-        <div id="btn-myroom" class="btn btn-scene" target="outgame">
-            <span class="material-icons md-l">chair</span>
-        </div>
-        <div id="btn-store" class="btn">
-            <span class="material-icons md-l">shopping_bag</span>
-        </div>
-        <div id="btn-social" class="btn btn-popup" target="popup-episode">
-            <span class="material-icons md-l">auto_stories</span>
+        <div id="btn-gacha" class="btn btn-popup" target="popup-itemlist">
+            <span class="material-icons md-l">people</span>
         </div>
         <div id="btn-gacha" class="btn btn-popup" target="popup-itemlist">
-            <span class="material-icons md-l">egg_alt</span>
+            <span class="material-icons md-l">email</span>
+        </div>
+        <div id="btn-gacha" class="btn btn-popup" target="popup-itemlist">
+            <span class="material-icons md-l">edit</span>
         </div>
     </div>
 </div>

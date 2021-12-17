@@ -247,6 +247,7 @@
 
         $(function(){
             initEpisode();
+            initItemList();
             $("#stage").load("scene/intro.html"); 
             setTimeout(() => {
                 changeScene('lobby');
@@ -272,6 +273,25 @@
                 let episode = $(episodes[i]);
                 episode.css('background-image', `url('assets/icon${i+1}.png')`);
             }
+            $('.btn').click(onBtnClick);
+        }
+
+        function initItemList() {
+            let episodeList = $('#popup-itemlist > .body');
+            for(let j=0; j < 20; j++) {
+                episodeList.append(
+                `<div class="item episode-item btn"">
+                    <div class="desc">
+                        아이템1
+                    </div>
+                </div>`
+                );
+            }
+            // let episodes = $('#popup-itemlist .episode-item');
+            // for(let i=0; i < episodes.length; i++) {
+            //     let episode = $(episodes[i]);
+            //     episode.css('background-image', `url('assets/icon${i+1}.png')`);
+            // }
             $('.btn').click(onBtnClick);
         }
 
