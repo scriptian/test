@@ -94,7 +94,21 @@
 
             .popup .head,
             .popup .body {
+                min-height: 80px;
                 display: flex;
+                gap: 10px;
+            }
+
+            .popup .head {
+                min-height: 50px;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                align-content: center;
+            }
+
+            .popup .head .btn {
+                min-height: 50px;
             }
 
             .popup > div {
@@ -179,6 +193,18 @@
             #popup-itemlist .item {
                 height: 150px;
             }
+            #popup-ani {
+                background: white;      
+                border: 1px solid #333;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                top: 70%;
+                padding: 10px;
+            }
+            #popup-ani div {
+                margin-bottom: 0;
+            }
         </style>
     </head>
     <body>
@@ -244,10 +270,37 @@
                     <div class="btn" id="btn-play">가차뽑기</div>
                 </div>
             </div>
+            <div class="popup" id="popup-ani">
+                <div id="img-ani">
+                </div>
+                <div id="txt-ani">
+                </div>
+            </div>
+            <div class="popup" id="popup-need-play">
+                <div class="head">
+                    <div>
+                        돋보기 없음
+                    </div>
+                    <div class="btn">닫기</div>
+                </div>
+                <div class="body">
+                    돋보기가 없습니다.<br/>
+                    퍼즐을 풀고 돋보기를 얻으세요
+                </div>
+                <div class="footer">
+                    <div class="btn btn-popup" target="popup-ingame">퍼즐 풀기</div>
+                </div>
+            </div>
         </div>
     </body>
     <script>
         let popupStack = [];
+        let popupNext = [];
+
+        let cntSearch = 2;
+
+        let itemCnt = 3;
+        let itemFound = 0;
 
         $(function(){
             initEpisode();
@@ -315,15 +368,17 @@
 
         function onBtnClick(evt) {
             let target = $(evt.currentTarget);
+            $('.popup').hide();
             if(target.hasClass('btn-scene')) {
                 changeScene(target.attr('target'));
-                $('.popup').hide();
             } else if(target.hasClass('btn-popup')) {
                 showPopup(target.attr('target'));
-            } else {
-                $('.popup').hide();
             }
+            event.stopImmediatePropagation();
         }
+        $('body').click(event => {
+            $('.popup').hide();
+        })
 
         function findParentByClass(target, className) {
             while(target.parent()) {

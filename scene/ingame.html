@@ -6,9 +6,30 @@
             background-image: url('assets/bg3.jpg');
             background-repeat: no-repeat;
             background-size: 100% 100%;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+        }
+        #group-btn {
+            display: flex;
+            justify-content: center;
+            height: 50px;
+            gap: 10px;
+        }
+        #group-btn .btn {
+            width: 120px;
+            height: 80px;
         }
     </style>
     <div id="ingame-puzzle">
+        <div id="group-btn">
+            <div id="btn-fail" class="btn btn-scene" targeet="lobby">
+                실패 
+            </div>
+            <div id="btn-success" class="btn btn-scene" target="lobby">
+                성공
+            </div>
+        </div>
     </div>
     <div id="ingame-headup" class="headup">
         <div id="bnt-mission" class="btn">
@@ -38,4 +59,9 @@
             setting
         </div>
     </div>
+    <script>
+        $('#btn-success').click(event => {
+            cntSearch++; 
+        });
+    </script>
 </div>

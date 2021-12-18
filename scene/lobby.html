@@ -11,6 +11,28 @@
             background-size: 100%;
             background-repeat: no-repeat;
         }
+        .img-fixed {
+            position: fixed;
+            background-color: black;
+        }
+        .img-fixed img {
+            box-shadow: 3px 4px 9px 0px #505050;
+        }
+        #img-1 {
+            top: 25%;
+            left: 35%;
+        }
+        #img-2 {
+            top: 55%;
+            left: 35%;
+        }
+        #img-3 {
+            top: 50%;
+            left: 55%;
+        }
+        .img-not-found {
+            opacity: 0;
+        }
     </style>
     <div id="lobby-bg"></div>
     <div id="lobby-headup" class="headup">
@@ -28,6 +50,7 @@
         </div>
         <div id="btn-star" class="btn">            
             <span class="material-icons md-l">search</span>
+            <span id="txt-search-cnt">100</span>
         </div>
     </div>
     <div id="lobby-bottom" class="headdown">
@@ -45,7 +68,77 @@
         </div>
         <div id="btn-episode" class="btn">
             에피소드<br/>
-            2/10
+            <span id="txt-item-found"></span>/<span id="txt-item-cnt"></span>
         </div>
     </div>
+    <script>
+        $(function(){
+            initItems();
+            updateSearchCnt();
+            updateItemFound();
+        });
+        
+        function initItems() {
+            let lobby = $('#lobby');
+            for(let id=0; id < itemCnt; id++) {
+                let imgClass='img-not-found';
+                if(id < itemFound) {
+                    imgClass='';
+                }
+                lobby.append($(`<div class="img-fixed" id="img-${id+1}"><img src="assets/item${id+1}.png" class="${imgClass}"></div>`));
+            }
+        }
+
+        function updateSearchCnt() {
+            $('#txt-search-cnt').text(cntSearch);
+        }
+        
+        function updateItemFound() {
+            $('#txt-item-found').text(itemFound);
+            $('#txt-item-cnt').text(itemCnt);
+        }
+
+        function showAni(id) {
+            let imgAni = $('#popup-ani #img-ani');
+            imgAni.empty();
+            let text = "찾았다~!!";
+            let imgExt = 'jpeg';
+            if(id == 3) {
+                imgExt = 'png';
+                text = "완성했어~!";
+            }
+            imgAni.append(`<img src="assets/ani${id}.${imgExt}">`);
+            let textAni = $('#popup-ani #txt-ani');
+            textAni.empty();
+            textAni.text(text);
+            showPopup('popup-ani');
+        }
+
+        $('body').click(event => {
+            console.log("t4erdst");
+            if(itemFound >= itemCnt) {
+                itemFound = 0;
+                $(`.img-fixed img`).addClass('img-not-found');
+                updateItemFound();
+            }
+        });
+
+        $('#btn-episode').click(event => {
+            console.log('btn episode');
+            if(cntSearch > 0) {
+                if(itemFound < itemCnt) {
+                    cntSearch--;
+                    itemFound++; 
+                    $(`#img-${itemFound} img`).removeClass('img-not-found');
+                    updateSearchCnt();
+                    updateItemFound();
+                    showAni(itemFound);
+                    event.stopImmediatePropagation();
+                }
+            } else {
+                showPopup('popup-need-play');
+                event.stopImmediatePropagation();
+            }
+        })
+    </script>
 </div>
