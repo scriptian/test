@@ -77,6 +77,13 @@
             updateSearchCnt();
             updateItemFound();
         });
+
+        function initScene() {
+            if(!isFirst.includes('lobby')) {
+                showPopup('popup-episode-start');
+                isFirst.push('lobby');
+            }
+        }
         
         function initItems() {
             let lobby = $('#lobby');

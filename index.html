@@ -302,6 +302,8 @@
         </div>
     </body>
     <script>
+        let isFirst = [];
+
         let popupStack = [];
         let popupNext = [];
 
@@ -365,6 +367,7 @@
             stage.empty();
             stage.load(`scene/${scene}.html`, () => {
                 $('.btn').click(onBtnClick);
+                initScene();
             });
         }
 
