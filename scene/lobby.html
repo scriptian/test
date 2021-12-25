@@ -6,7 +6,7 @@
         #lobby-bg {
             width: 100%;
             height: 100%;
-            background-image: url('assets/episode2.png');
+            background-image: url('assets/episode2.jpg');
             background-position: center;
             background-size: 100%;
             background-repeat: no-repeat;
@@ -112,6 +112,9 @@
             textAni.empty();
             textAni.text(text);
             showPopup('popup-ani');
+            if(id == 3) {
+                popupNext.push('popup-episode-start');
+            }
         }
 
         $('body').click(event => {

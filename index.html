@@ -205,6 +205,11 @@
             #popup-ani div {
                 margin-bottom: 0;
             }
+            #popup-episode-start {
+                top: 30%;
+                padding: 0;
+                border: 3px solid #333;
+            }
         </style>
     </head>
     <body>
@@ -290,6 +295,9 @@
                 <div class="footer">
                     <div class="btn btn-popup" target="popup-ingame">퍼즐 풀기</div>
                 </div>
+            </div>
+            <div class="popup" id="popup-episode-start">
+                <img src="assets/episode_s.jpg"/>
             </div>
         </div>
     </body>
@@ -377,7 +385,13 @@
             event.stopImmediatePropagation();
         }
         $('body').click(event => {
+            if(popupStack.length > 0) {
+                popupStack.shift();
+            }            
             $('.popup').hide();
+            if(popupNext.length > 0) {
+                showPopup(popupNext.shift());
+            }
         })
 
         function findParentByClass(target, className) {
